@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import {
+    Alert,
     Box,
     Button,
     CircularProgress
@@ -63,10 +64,8 @@ export const HubSpotIntegration = ({ user, org, integrationParams, setIntegratio
     }, []);
 
     return (
-        <>
-        <Box sx={{mt: 2}}>
-            Parameters
-            <Box display='flex' alignItems='center' justifyContent='center' sx={{mt: 2}}>
+        <Box sx={{my: 2, width: '100%'}}>
+            {!isConnected && !isConnecting && 
                 <Button 
                     variant='contained' 
                     onClick={isConnected ? () => {} :handleConnectClick}
@@ -78,10 +77,11 @@ export const HubSpotIntegration = ({ user, org, integrationParams, setIntegratio
                         opacity: isConnected ? 1 : undefined
                     }}
                 >
-                    {isConnected ? 'Hubspot Connected' : isConnecting ? <CircularProgress size={20} /> : 'Connect to hubspot'}
+                    Connect to hubspot
                 </Button>
-            </Box>
+            }
+            {isConnected && <Alert sx={{width: '100%'}} severity="success">Hubspot Connected</Alert>}
+            {isConnecting && <Box display='flex' alignItems='center' justifyContent='center' sx={{width: '100%'}}><CircularProgress size={20} /><Alert severity="info" sx={{mx: 2}}>Connecting...</Alert></Box>}
         </Box>
-      </>
     );
 }

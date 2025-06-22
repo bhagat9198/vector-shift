@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import {
+    Alert,
     Box,
     Button,
     CircularProgress
@@ -64,7 +65,7 @@ export const AirtableIntegration = ({ user, org, integrationParams, setIntegrati
 
     return (
         <>
-        <Box sx={{mt: 2}}>
+        {/* <Box sx={{mt: 2}}>
             Parameters
             <Box display='flex' alignItems='center' justifyContent='center' sx={{mt: 2}}>
                 <Button 
@@ -81,7 +82,28 @@ export const AirtableIntegration = ({ user, org, integrationParams, setIntegrati
                     {isConnected ? 'Airtable Connected' : isConnecting ? <CircularProgress size={20} /> : 'Connect to Airtable'}
                 </Button>
             </Box>
-        </Box>
+        </Box> */}
+
+               <Box sx={{my: 2, width: '100%'}}>
+                    {!isConnected && !isConnecting && 
+                        <Button 
+                            variant='contained' 
+                            onClick={isConnected ? () => {} :handleConnectClick}
+                            color={isConnected ? 'success' : 'primary'}
+                            disabled={isConnecting}
+                            style={{
+                                pointerEvents: isConnected ? 'none' : 'auto',
+                                cursor: isConnected ? 'default' : 'pointer',
+                                opacity: isConnected ? 1 : undefined
+                            }}
+                        >
+                            Connect to Airtabl  e
+                        </Button>
+                    }
+                    {isConnected && <Alert sx={{width: '100%'}} severity="success">Airtable Connected</Alert>}
+                    {isConnecting && <Box display='flex' alignItems='center' justifyContent='center' sx={{width: '100%'}}><CircularProgress size={20} /><Alert severity="info" sx={{mx: 2}}>Connecting...</Alert></Box>}
+                </Box>
+
       </>
     );
 }
