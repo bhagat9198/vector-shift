@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { axiosInstance } from './config/axios';
-import MuiAppBar from './components/MuiAppBar';
+import MuiAppBar from './components/ui/MuiAppBar';
 
 const endpointMapping = {
   'Notion': 'notion',

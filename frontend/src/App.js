@@ -1,8 +1,8 @@
-import { IntegrationForm } from './integration-form';
+import { IntegrationForm } from './components/forms';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <IntegrationForm />
     </div>
   );

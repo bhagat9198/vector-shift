@@ -1,17 +1,16 @@
-import * as React from 'react';
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableContainer, 
-  TableHead, 
-  TableRow, 
-  Paper, 
-  IconButton, 
+import React from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  IconButton,
   Collapse,
   Typography,
   Box,
-  Link,
   styled
 } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
@@ -51,15 +50,6 @@ const Row = ({ row }) => {
     }
   }, [row.delta]);
 
-  // Get all other fields for the main table
-  const metaFields = Object.keys(row)
-    .filter(key => 
-      key !== 'delta' && 
-      key !== 'children' && 
-      key !== 'source' && 
-      row[key] !== null
-    );
-
   // Format date strings
   const formatDate = (dateString) => {
     if (!dateString) return '-';
@@ -78,6 +68,15 @@ const Row = ({ row }) => {
     return value;
   };
 
+  // Get all other fields for the main table
+  const metaFields = Object.keys(row)
+    .filter(key => 
+      key !== 'delta' && 
+      key !== 'children' && 
+      key !== 'source' && 
+      row[key] !== null
+    );
+
   return (
     <React.Fragment>
       <TableRow hover>
@@ -86,6 +85,7 @@ const Row = ({ row }) => {
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
+            disabled={metaFields.length === 0}
           >
             {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
           </IconButton>
@@ -100,11 +100,7 @@ const Row = ({ row }) => {
         <TableCell>{deltaData.company || '-'}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell 
-          style={{ padding: 0 }} 
-          colSpan={7}
-          className="sticky-first-col"
-        >
+        <TableCell style={{ padding: 0 }} colSpan={7} className="sticky-first-col">
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ p: 2, backgroundColor: '#f9f9f9' }}>
               <Typography variant="subtitle1" gutterBottom>
@@ -160,12 +156,20 @@ const Row = ({ row }) => {
 };
 
 const CollapsibleTable = ({ data = [] }) => {
+  if (!data || data.length === 0) {
+    return (
+      <Box sx={{ p: 3, textAlign: 'center' }}>
+        <Typography color="textSecondary">No data available</Typography>
+      </Box>
+    );
+  }
+
   return (
     <StickyTableContainer component={Paper}>
       <Table stickyHeader aria-label="collapsible table" size="small">
         <TableHead>
           <TableRow>
-            <TableCell className="sticky-header sticky-first-col"> </TableCell>
+            <TableCell className="sticky-header sticky-first-col" />
             <TableCell className="sticky-header sticky-first-col">Name</TableCell>
             <TableCell className="sticky-header">Type</TableCell>
             <TableCell className="sticky-header">Created</TableCell>

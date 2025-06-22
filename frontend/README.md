@@ -1,6 +1,27 @@
-# Getting Started with Create React App
+# Integration Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application for managing various integrations like Notion, Airtable, and HubSpot.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── forms/           # Form components
+│   ├── tables/          # Table components
+│   └── ui/              # Reusable UI components
+├── constants/           # Application constants
+├── hooks/               # Custom React hooks
+├── services/            # API services
+└── utils/               # Utility functions
+```
+
+## Features
+
+- Integration with multiple platforms (Notion, Airtable, HubSpot)
+- Responsive and collapsible data tables
+- Error handling and loading states
+- Modern UI with Material-UI components
 
 ## Available Scripts
 
@@ -39,15 +60,35 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Start the development server:
+   ```bash
+   npm start
+   ```
 
-### Code Splitting
+3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Development
+
+- Follow the component structure in `src/components`
+- Keep components small and focused on a single responsibility
+- Use custom hooks for business logic
+- Place API calls in the `services` directory
+- Define constants in the `constants` directory
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+This will create an optimized production build in the `build` folder.
 
 ### Analyzing the Bundle Size
 

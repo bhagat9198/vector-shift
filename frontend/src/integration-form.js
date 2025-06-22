@@ -12,10 +12,10 @@ import { AirtableIntegration } from './integrations/airtable';
 import { NotionIntegration } from './integrations/notion';
 import { DataForm } from './data-form';
 import { HubSpotIntegration } from './integrations/hubspot';
-import MuiAppBar from './components/MuiAppBar';
-import MuiRowRadioButtonsGroup from './components/MuiRowRadioButtonsGroup';
+import MuiAppBar from './components/ui/MuiAppBar';
+import MuiRowRadioButtonsGroup from './components/forms/MuiRowRadioButtonsGroup';
 import { axiosInstance } from './config/axios';
-import StickyHeadTable from './components/StickyHeadTable';
+import StickyHeadTable from './components/tables/StickyHeadTable';
 import CollapsibleTable from './components/CollapsibleTable';
 
 const integrationMapping = {
