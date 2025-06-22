@@ -5,21 +5,26 @@ import {
     Button,
 } from '@mui/material';
 import axios from 'axios';
+import { axiosInstance } from './config/axios';
 
 const endpointMapping = {
     'Notion': 'notion',
     'Airtable': 'airtable',
+    'Hubspot': 'hubspot',
 };
 
 export const DataForm = ({ integrationType, credentials }) => {
     const [loadedData, setLoadedData] = useState(null);
+    console.log("DataForm :: integrationType :: ", integrationType);
+    console.log("DataForm :: credentials :: ", credentials);
+    
     const endpoint = endpointMapping[integrationType];
 
     const handleLoad = async () => {
         try {
             const formData = new FormData();
             formData.append('credentials', JSON.stringify(credentials));
-            const response = await axios.post(`http://localhost:8000/integrations/${endpoint}/load`, formData);
+            const response = await axiosInstance.post(`integrations/${endpoint}/load`, formData);
             const data = response.data;
             setLoadedData(data);
         } catch (e) {
