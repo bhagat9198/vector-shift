@@ -108,15 +108,23 @@ const IntegrationForm = () => {
             <Box>{renderIntegrationComponent()}</Box>
             {integrationParams?.credentials && (
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Button
-                  onClick={handleLoad}
-                  variant="contained"
-                  disabled={isLoading}
-                  startIcon={isLoading ? <CircularProgress size={20} /> : null}
-                >
-                  {isLoading ? 'Loading...' : 'Load Data'}
-                </Button>
-                {loadedData && (
+                {isLoading ? (
+                  <Button
+                    variant="contained"
+                    disabled
+                    startIcon={<CircularProgress size={20} />}
+                  >
+                    Loading...
+                  </Button>
+                ) : !loadedData || loadedData?.error ? (
+                  <Button
+                    onClick={handleLoad}
+                    variant="contained"
+                  >
+                    Load Data
+                  </Button>
+                ) : null}
+                {loadedData && !loadedData.error && (
                   <Button onClick={clearData} variant="outlined">
                     Clear Data
                   </Button>
