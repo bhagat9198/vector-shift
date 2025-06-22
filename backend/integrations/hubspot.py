@@ -64,6 +64,7 @@ async def authorize_hubspot(user_id, org_id):
     return auth_url
     
     # return 
+
 async def oauth2callback_hubspot(request: Request):
     print(f"hubspot :: oauth2callback_hubspot :: request.query_params {request.query_params}")
 
