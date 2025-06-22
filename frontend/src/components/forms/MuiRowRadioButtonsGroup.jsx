@@ -18,8 +18,8 @@ export default function MuiRowRadioButtonsGroup({ label, options, onChange }) {
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        {options.map((option) => (
-            <FormControlLabel value={option} control={<Radio />} label={option} />
+        {options.map((option, index) => (
+            <FormControlLabel key={`${option}-${index}`} value={option} control={<Radio />} label={option} />
         ))}
       </RadioGroup>
     </FormControl>
